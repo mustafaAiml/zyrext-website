@@ -50,6 +50,34 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
+function copyToClipboard(text) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    return navigator.clipboard.writeText(text);
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand('copy');
+  document.body.removeChild(textarea);
+  return Promise.resolve(copied ? text : '');
+}
+
+function showCopyToast() {
+  const toast = document.getElementById('copy-toast');
+  if (!toast) return;
+
+  toast.classList.add('show');
+  window.clearTimeout(showCopyToast.timeout);
+  showCopyToast.timeout = window.setTimeout(() => {
+    toast.classList.remove('show');
+  }, 1400);
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   const hash = window.location.hash.replace('#', '');
   if (hash) {
@@ -57,6 +85,47 @@ window.addEventListener('DOMContentLoaded', () => {
   } else {
     setActiveLink('home');
   }
+
+  document.querySelectorAll('.contact-card').forEach(card => {
+    let pressTimer;
+    let longPressTriggered = false;
+
+    const startPress = () => {
+      longPressTriggered = false;
+      pressTimer = window.setTimeout(() => {
+        longPressTriggered = true;
+        copyToClipboard(card.dataset.copyValue)
+          .then(() => showCopyToast())
+          .catch(() => showCopyToast());
+      }, 450);
+    };
+
+    const clearPress = () => {
+      if (pressTimer) {
+        window.clearTimeout(pressTimer);
+      }
+      pressTimer = null;
+    };
+
+    card.addEventListener('pointerdown', startPress);
+    card.addEventListener('pointerup', clearPress);
+    card.addEventListener('pointerleave', clearPress);
+    card.addEventListener('pointercancel', clearPress);
+    card.addEventListener('click', event => {
+      event.preventDefault();
+      if (longPressTriggered) {
+        longPressTriggered = false;
+        return;
+      }
+      window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
+    });
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        window.open(card.dataset.href, '_blank', 'noopener,noreferrer');
+      }
+    });
+  });
 
   const gofileLink = 'https://gofile.io/d/nZBMV2';
   const capabilityCards = document.querySelectorAll('.capability-card.clickable');
