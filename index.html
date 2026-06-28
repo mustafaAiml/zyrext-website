@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pap6jpD4sQm1zYv6ClqY1I/OE67jo1LVqT/Eb3RJyocXXr+Bu9A0Y5MZ+uk+P1XqE6V8cJ5lE9x7SrY9L+9W3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -32,6 +31,7 @@
     </button>
   </div>
 </header>
+
 
   ﻿<section id="home-section" class="section">
   <div class="container section-content hero">
@@ -60,6 +60,7 @@
     </div>
   </div>
 </section>
+
 
   ﻿<section id="journey-section" class="section hide">
   <div class="container section-content">
@@ -106,6 +107,7 @@
   </div>
 </section>
 
+
   ﻿<section id="capabilities-section" class="section hide">
   <div class="container section-content">
     <div class="section-header">
@@ -113,29 +115,63 @@
       <p class="section-subtitle">Modern AI systems with industry-ready architecture, clarity, and polished experience.</p>
     </div>
     <div class="capabilities-grid">
-      <article class="capability-card">
-        <i class="fa-solid fa-brain"></i>
-        <h3>ML Models</h3>
-        <p>Classification & NLP solutions built with accuracy-focused pipelines and optimization.</p>
+      <article class="capability-card capability-primary clickable" data-card="junk-cleaner" role="button" tabindex="0">
+        <div class="capability-card-top">
+          <i class="fa-solid fa-trash-can"></i>
+          <div class="capability-card-meta">
+            <h3>Junk Cleaner</h3>
+            <p>Android app to clean junk files and optimize device performance.</p>
+          </div>
+        </div>
+        <div class="capability-card-footer">
+          <span class="card-link">
+            <i class="fa-solid fa-download"></i>
+            Download
+          </span>
+        </div>
       </article>
-      <article class="capability-card">
-        <i class="fa-solid fa-code"></i>
+      <article class="capability-card capability-soon clickable" data-card-type="coming-soon" role="button" tabindex="0">
+        <div class="card-header">
+          <i class="fa-solid fa-code"></i>
+          <span class="coming-soon-badge">🔜 Coming Soon</span>
+        </div>
         <h3>Web Apps</h3>
         <p>Full-stack development for AI-driven dashboards, portals, and responsive web experiences.</p>
       </article>
-      <article class="capability-card">
-        <i class="fa-solid fa-comments"></i>
+      <article class="capability-card capability-soon clickable" data-card-type="coming-soon" role="button" tabindex="0">
+        <div class="card-header">
+          <i class="fa-solid fa-comments"></i>
+          <span class="coming-soon-badge">🔜 Coming Soon</span>
+        </div>
         <h3>Chatbots</h3>
         <p>Conversational AI interfaces that feel natural, intelligent, and service-ready.</p>
       </article>
-      <article class="capability-card">
-        <i class="fa-solid fa-camera-retro"></i>
+      <article class="capability-card capability-soon clickable" data-card-type="coming-soon" role="button" tabindex="0">
+        <div class="card-header">
+          <i class="fa-solid fa-camera-retro"></i>
+          <span class="coming-soon-badge">🔜 Coming Soon</span>
+        </div>
         <h3>Computer Vision</h3>
         <p>OpenCV & YOLO applications for object detection, automation, and real-time analytics.</p>
       </article>
     </div>
   </div>
+  <div class="modal-overlay" aria-hidden="true">
+    <div class="modal-window" role="document">
+      <button class="modal-close" aria-label="Close modal">×</button>
+      <div class="modal-content">
+        <span class="modal-status">🚀 Coming Soon</span>
+        <h3>Feature is under active development</h3>
+        <p>This feature is under active development. Stay tuned for updates!</p>
+        <a class="download-button modal-download" href="https://gofile.io/d/nZBMV2" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          📱 Download Junk Cleaner App
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
+
 
   ﻿<section id="connect-section" class="section hide">
   <div class="container section-content">
@@ -146,6 +182,11 @@
     <div class="connect-panel glass">
       <input type="email" placeholder="your.email@domain.com" aria-label="Email address" />
       <button type="button">Submit</button>
+      <a href="https://gofile.io/d/nZBMV2" target="_blank" rel="noopener noreferrer" class="download-button">
+        <span class="download-icon">📱</span>
+        Download Junk Cleaner App
+      </a>
+      <p class="download-hint">APK • 51 MB • Android Only</p>
       <p class="footer">© 2026 ZyroX — Engineered with precision.</p>
       <div class="socials">
         <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -155,6 +196,7 @@
     </div>
   </div>
 </section>
+
 
   <script src="script.js"></script>
 </body>
