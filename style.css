@@ -809,7 +809,7 @@ header {
 .connect-line {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.8rem;
   color: rgba(248, 248, 255, 0.9);
   text-decoration: none;
@@ -817,8 +817,24 @@ header {
   font-weight: 500;
   line-height: 1.7;
   letter-spacing: 0.01em;
-  padding: 0.2rem 0;
+  padding: 0.16rem 0;
   transition: color 0.25s ease, transform 0.25s ease, letter-spacing 0.25s ease;
+  position: relative;
+  min-width: 0;
+}
+
+.connect-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: scaleX(0.2);
+  transform-origin: center;
+  transition: transform 0.25s ease;
+  opacity: 0.6;
 }
 
 .connect-line:hover,
@@ -828,11 +844,16 @@ header {
   letter-spacing: 0.02em;
 }
 
+.connect-line:hover::after,
+.connect-line:focus-visible::after {
+  transform: scaleX(1);
+}
+
 .connect-line:hover .contact-icon,
 .connect-line:focus-visible .contact-icon {
   opacity: 1;
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.18);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.16);
 }
 
 .connect-line:focus-visible {
@@ -843,15 +864,22 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.08rem;
-  opacity: 0.74;
-  color: rgba(248, 248, 255, 0.82);
+  width: 1.05rem;
+  height: 1.05rem;
+  opacity: 0.78;
+  color: rgba(248, 248, 255, 0.84);
   transition: opacity 0.25s ease, color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.contact-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .connect-line:hover .contact-icon,
 .connect-line:focus-visible .contact-icon {
-  transform: scale(1.06);
+  transform: scale(1.07);
 }
 
 .footer {
